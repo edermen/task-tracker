@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -34,9 +34,30 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   # Call 'debugger' anywhere in the code to stop execution and get a debugger console
-  gem 'debugger'
-end
+	gem 'byebug', '~> 5.0.0'
+	gem 'pry-byebug'
+	gem 'rspec'
+	gem 'rspec-rails'
+	#guard & Co
+	gem 'guard'
+	gem 'listen'
+	gem "rack-livereload"
+	gem 'guard-livereload'
+	gem 'rb-fsevent',  :require => false
+	gem 'childprocess'
+	#gem 'spring'
+	gem 'spring-commands-rspec'
+	gem 'rails-erd'
 
+end
+group :test do
+	gem 'capybara'
+	gem 'selenium-webdriver'
+	gem 'libnotify'
+	gem 'factory_girl_rails'
+	gem 'database_cleaner'
+
+end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
