@@ -4,9 +4,11 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.18'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'bootstrap-sass'
+gem 'twitter-bootstrap-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -33,28 +35,28 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  # Call 'debugger' anywhere in the code to stop execution and get a debugger console
 	gem 'byebug', '~> 5.0.0'
 	gem 'pry-byebug'
 	gem 'rspec'
 	gem 'rspec-rails'
+	gem 'spring-commands-rspec'
 	#guard & Co
+	gem 'guard-rspec'
 	gem 'guard'
-	gem 'listen'
-	gem "rack-livereload"
 	gem 'guard-livereload'
+	gem 'rack-livereload'
+	gem 'listen'
 	gem 'rb-fsevent',  :require => false
 	gem 'childprocess'
-	#gem 'spring'
-	gem 'spring-commands-rspec'
-	gem 'rails-erd'
+	gem 'factory_girl_rails'
+	#faker
+	gem 'faker'
 
 end
 group :test do
 	gem 'capybara'
 	gem 'selenium-webdriver'
 	gem 'libnotify'
-	gem 'factory_girl_rails'
 	gem 'database_cleaner'
 
 end
