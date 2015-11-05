@@ -8,14 +8,24 @@ describe Project do
 		it { is_expected.to respond_to(:description)  }
 		
 		context "validations" do
-			it "Empty values" do
-				expect(project.name).not_to be_empty
-				expect(project.description).not_to be_empty
+			context "Empty values" do
+				it "Empty name" do
+					project = Project.new(name: nil)
+					project.valid?
+					expect(project.errors[:name]).to include("can't be blank")
+				end
+				it "Empty description" do
+					project = Project.new(description: nil)
+					project.valid?
+					expect(project.errors[:description]).to include("can't be blank")
+				end
 			end
 
 			it "regexp validation" do
-				expect(project.name).to 			 match(/[A-z$%, !?.-]{6,}/)
-				expect(project.description).to match(/[A-z$%, !?.-]{10,}/)
+				project = Project.new(name: "#$$%", description: "fsdfs")
+				expect(project.errors[:name]).to include("It's too short name!")
+				expect(project.errors[:description]).to include("It's too short description!")
+
 			end
 		end
 	end
