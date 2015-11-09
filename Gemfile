@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 gem 'mysql2', '~> 0.3.18'
 gem 'bootstrap-sass', '~> 3.3.5'
@@ -10,6 +9,15 @@ gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
+gem 'simple_form'
+gem 'cocoon'
+gem "breadcrumbs_on_rails"
+gem 'enumerize'
+
+# Cancancan
+gem 'cancancan', '~> 1.10'
+
+
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
@@ -21,14 +29,13 @@ gem 'bcrypt', '~> 3.1.7'
 # sorcery
 gem 'sorcery'
 gem 'validates_email_format_of'
-# Use Unicorn as the app server
-# gem 'unicorn'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+# for statistics
+gem 'time_difference'
+
 
 group :development, :test do
-	gem 'byebug', '~> 5.0.0'
+	gem 'byebug'
 	gem 'pry-byebug'
 	gem 'rspec'
 	gem 'rspec-rails'
@@ -41,9 +48,9 @@ group :development, :test do
 	gem 'listen'
 	gem 'rb-fsevent',  :require => false
 	gem 'childprocess'
-	gem 'factory_girl_rails'
 	#faker
 	gem 'faker'
+	gem "factory_girl_rails"
 
 end
 group :test do

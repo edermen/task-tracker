@@ -1,0 +1,12 @@
+<% provide(:title, 'New task') %>
+<div class="row">
+  <div class="col-lg-4 col-lg-offset-4">
+    <div class="page-header">
+
+      <h1 class="text-center">New task</h1>
+    </div>
+
+    <%= render partial: "tasks/form", locals: {task: @task} %>
+
+  </div>
+</div>

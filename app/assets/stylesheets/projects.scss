@@ -1,3 +1,36 @@
-// Place all the styles related to the Projects controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* Item */
+.item{
+  margin: $margin-15px;
+  @include box-shadow($border-color);
+  background: #fff;
+
+  .item-header{
+    background: #eff9ee;
+    padding: 5px 0px 2px 0px;
+    border-bottom: 1px solid #e9e3ec;
+    overflow: hidden;
+
+    .item-title{
+      font-size: 20px;
+
+
+      a{
+        color: #444;
+      }
+    }
+  }
+  .item-content {
+    padding: 5px 6px;
+    p {
+      padding: 0;
+      margin: 0;
+    }
+  }
+  .item-desccription{
+    padding: 5px;
+  }
+
+  .item-manage {
+    padding-right: 6px;
+  }
+}

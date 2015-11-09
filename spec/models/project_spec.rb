@@ -1,34 +1,19 @@
 require 'rails_helper'
 describe Project do
-	let(:project) { create(:project) }
-  subject { project }
-	context "Basic fields" do
-		it { is_expected.to respond_to(:parent_id)  }
-		it { is_expected.to respond_to(:name)  }
-		it { is_expected.to respond_to(:description)  }
-		
-		context "validations" do
-			context "Empty values" do
-				it "Empty name" do
-					project = Project.new(name: nil)
-					project.valid?
-					expect(project.errors[:name]).to include("can't be blank")
-				end
-				it "Empty description" do
-					project = Project.new(description: nil)
-					project.valid?
-					expect(project.errors[:description]).to include("can't be blank")
-				end
-			end
-
-			it "regexp validation" do
-				project = Project.new(name: "#$$%", description: "fsdfs")
-				expect(project.errors[:name]).to include("It's too short name!")
-				expect(project.errors[:description]).to include("It's too short description!")
-
-			end
+	let(:project) { FactoryGirl.build(:project) }
+	context "Field validations" do
+		it 'Empty name' do
+			project.name = ''
+			expect(project).not_to be_valid
+		end
+		it 'Empty description' do
+			expect(build(:project, :empty_description)).not_to be_valid
 		end
 	end
 
-
+	context "relations validations" do
+		it { should have_many(:tasks) }
+		it { should have_many(:users) }
+		it { should accept_nested_attributes_for(:project_members) }
+	end
 end

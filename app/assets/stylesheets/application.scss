@@ -18,4 +18,57 @@
 @import "bootstrap.scss";
 @import "bootstrap_and_overrides.scss";
 @import "sessions.scss";
+@import "projects.scss";
+@import "tasks.scss";
+
+body { padding-top: 50px; }
+
+.breadcrumb{
+  margin-bottom: 0px;
+}
+ h1 {
+   margin: 0 10px;
+   line-height: 0.85;
+ }
+.debug{
+  margin-top: 10px;
+  width: $width-600px;
+}
+
+/* FORM STYLE */
+.form-width-default {
+  width: 320px;
+}
+
+.width-250 {
+  width: $width-100px
+}
+.width-600 {
+  width: $width-600px;
+}
+
+thead{
+  font-weight: bold;
+}
+
+.alert-warning{ margin-top: 25px}
+
+/* HEADER */
+.navbar-default .navbar-nav > li > a {
+  font-size: $font-size-large;
+  color: #3b4f77;
+}
+.navbar-default .navbar-brand{
+  font-size: $font-size-h4;
+  font-weight: bold;
+  color: #ac3f32;
+}
+.header-profile{
+  margin-right : $margin-15px;
+}
+  /* FOOTER */
+#footer{
+  margin: $margin-15px;
+  font-size: $font-size-h4;
+}
 

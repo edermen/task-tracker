@@ -1,0 +1,48 @@
+
+    <%= minimal_form_for(task) do |f| %>
+			<%= render partial: "layouts/shared/form_error_messages", locals: {object: task} %>
+      <div class="input-group input-group-sm">
+      <span class="input-group-addon">
+        Enter name:
+      </span>
+        <%= f.input :name,  required: true,  class: "form-control", :error => false %>
+			</div>
+	      <div class="input-group input-group-sm">
+		      <span class="input-group-addon">
+		        Select user:
+		      </span>
+	        <%= collection_select(:task, :user_id, User.all, :id, :login, { include_blank: true, prompt: "Select
+	        user" }, {class: 'form-control'}) %>
+
+	      </div>
+
+      <div class="input-group input-group-sm">
+	      <span class="input-group-addon">
+	        Select project:
+	      </span>
+        <%= f.select( :project_id, Project.all.map {|p| [ p.name, p.id ] }, { include_blank: true, prompt: "Select a project" } , {class: 'form-control'} ) %>
+			</div>
+
+      <div class="input-group input-group-sm">
+      <span class="input-group-addon">
+        Set status:
+      </span>
+	    <%= f.select(:status, Task.status.options , {} , {class: 'form-control '})  %>
+			</div>
+      <div class="form-actions">
+        <%= f.button :submit, class: "btn btn-primary btn-block" %>
+
+
+      </div>
+    <% end %>
+    <%if request.referer == request.url  %>
+      <%= link_to  tasks_path, class:"btn btn-default  btn-warning pull-right " do %>
+        <span class="glyphicon glyphicon-list-alt"></span>
+        Back to all task list
+      <% end %>
+    <% end %>
+    <% if @task.project_id? %>
+      <%= link_to  project_path(@task.project.id), class:"btn btn-default  btn-success pull-left " do %>
+        < Back to project
+      <% end %>
+    <% end %>

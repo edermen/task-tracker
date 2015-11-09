@@ -3,13 +3,12 @@ class SessionsController < ApplicationController
 	before_action :require_login, only: [:destroy]
 
 	def new
-		flash.now[:warning] = "Login required!"
 	end
 
 	def create
 
 		if @user
-			redirect_back_or_to root_url , notice: "Logged in!"
+			redirect_back_or_to root_url
 		else
 			flash.now[:danger] = 'Invalid email/password combination'
 			render "new"
@@ -17,7 +16,6 @@ class SessionsController < ApplicationController
 	end
 
 	def destroy
-		flash.now[:warning] =  'Logged out!'
 		logout
 		redirect_to root_url
 	end

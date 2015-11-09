@@ -1,17 +1,18 @@
-<%= form_for(@project) do |f| %>
-  <% if @project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
 
-      <ul>
-      <% @project.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for(@project) do |f| %>
+  <%= render partial: "layouts/shared/form_error_messages", locals: {object: @project} %>
+  <div class="input-group input-group-lg">
+      <span class="input-group-addon">
+        <span class="glyphicon glyphicon-pencil"></span>
+      </span>
 
-  <div class="actions">
-    <%= f.submit %>
+    <%= f.text_field :name, class: "form-control", placeholder: :name %>
   </div>
+  <div class="input-group input-group-lg">
+      <span class="input-group-addon">
+        <span class="glyphicon glyphicon-pencil"></span>
+      </span>
+    <%= f.text_area :description, class: "form-control", size: "10x10", placeholder: :description %>
+  </div>
+  <%= f.submit "Send", class: "btn btn-primary btn-lg btn-block" %>
 <% end %>

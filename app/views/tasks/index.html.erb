@@ -1,0 +1,24 @@
+<% provide(:title, 'All tasks') %>
+
+<div class="page-header">
+  <%= link_to new_project_task_path, class: 'btn btn-primary pull-left' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Task
+  <% end %>
+  <h1 class="text-center">A list of all tasks</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+	      <td>Task name</td>
+	      <td>Project</td>
+	      <td>User</td>
+	      <td>Status</td>
+      </tr>
+    </thead>
+	  <%= render partial: "task_list", locals: { tasks: @tasks }  %>
+
+  </table>
+</div>

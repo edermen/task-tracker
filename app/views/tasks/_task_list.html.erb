@@ -1,0 +1,19 @@
+<tbody>
+<%= content_tag_for(:tr, tasks) do |task| %>
+  <td><%= link_to task.name, task_path(task) %></td>
+
+  <% unless task.user.nil?  %>
+    <td>
+      <%= task.user.login %>
+    </td>
+  <% else %>
+    <td>No user </td>
+  <% end %>
+  <td><%= task.status_text %></td>
+  <td class="button-group">
+    <%= link_to 'Edit', edit_task_path(task), class: "btn btn-success btn-sm" %>
+    <%= link_to 'Destroy', task, method: :delete, class: "btn btn-danger btn-sm ",  data: { confirm: 'Are you sure?' } %>
+  </td>
+
+<% end %>
+</tbody>

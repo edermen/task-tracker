@@ -6,16 +6,28 @@
   =require twitter-bootstrap-static/fontawesome
   */
 
-.input-group-lg{
+.input-group-lg, .input-group-sm{
   margin: $form-group-margin-bottom 0
 }
+.form-actions{
+  margin: 10px 0px;
+}
 
-$width-300px: 300px;
+
+// Variables
+$width-100px: 160px;
 $width-600px: 600px;
 
-.debug{
-  margin-top: 10px;
- width: $width-600px;
+$margin-15px: 15px;
+$item-color:  #f8f8f8;
+$border-color: #bbbbbb;
+
+/* MIXINS */
+
+@mixin box-shadow($item-color) {
+  -webkit-box-shadow: 0px 1px 3px 0px $item-color;
+  -moz-box-shadow: 0px 1px 3px 0px $item-color;
+  box-shadow: 0px 1px 3px 0px $item-color;
 }
 
 

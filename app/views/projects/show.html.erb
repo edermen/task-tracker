@@ -1,4 +1,96 @@
+<% provide(:title, @project.name) %>
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-lg-4"><h1 class="pull-left"><%= @project.name %> </h1>
+    <%= link_to edit_project_path(@project), class: " btn btn-success pull-left btn-sm" do %>
+      <span class="glyphicon glyphicon-pencil"></span>
+      Edit
+    <% end %>
+  </div>
+	<div class="col-lg-6">
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+		<%= link_to tasks_path, class: " btn btn-success pull-left btn-sm" do %>
+	    <span class="glyphicon glyphicon-plus"></span>
+			Add task
+		<% end %>
+	</div>
+</div>
+<div class="row">
+	<!-- Project tasks -->
+  <div class="col-lg-8">
+    <h2>Tasks list</h2>
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+          <td>Task name</td>
+          <td>User</td>
+          <td>Status</td>
+          <td class="width-250">Actions</td>
+        </tr>
+        </thead>
+	      <%= render partial:"tasks/task_list", locals: { tasks: @project.tasks } %>
+      </table>
+    </div>
+  </div>
+  <!-- Add new Task -->
+  <div class="col-lg-4"><%= minimal_form_for([@project,Task.new]) do |f| %>
+      <h2 class="text-center">New task</h2>
+      <div class="input-group input-group-sm">
+        <span class="input-group-addon">Enter name</span>
+        <%= f.input :name, required: true, error: "Name too short", class: "form-control" %>
+      </div>
+      <div class="input-group input-group-sm">
+		      <span class="input-group-addon">
+		        Select user:
+		      </span>
+        <%= f.select(:user_id, @project.users.all.map {|p| [ p.login, p.id ] }, { include_blank: true, prompt: "Select user" } , {class: 'form-control'} ) %>
+      </div>
+
+      <div class="input-group input-group-sm">
+		      <span class="input-group-addon">
+		        Set status:
+		      </span>
+        <%= f.select(:status, Task.status.options, {}, { class: 'form-control ' }) %>
+      </div>
+
+      <%= f.input :project_id, as: :hidden, input_html: { value: @project.id } %>
+      <div class="form-actions">
+        <%= f.button :submit, class: "btn btn-primary btn-block " %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<!-- Project Users -->
+	<div class="row">
+	  <div class="col-lg-9">
+	    <h2>Members:</h2>
+	    <%= render partial: "users/user_list", locals: { users: @project.users } %>
+	  </div>
+		<div class="col-lg-3">
+	  <!-- Add Member -->
+	  <h2 class="text-center">Assign new user</h2>
+	  <%= minimal_form_for([@project, ProjectMember.new]) do |u| %>
+	    <%= u.input :project_id, as: :hidden, input_html: {value: @project.id}  %>
+	    <div class="input-group input-group-sm">
+			      <span class="input-group-addon">
+			        Set status:
+			      </span>
+	      <%= u.select(:user_id, User.all.map {|p| [ p.login, p.id ] }, { prompt: "Select user" } , {class: 'form-control'} ) %>
+	    </div>
+	    <%= u.submit "add user!", class: "btn btn-default btn btn-primary btn-block " %>
+	  <% end %>
+	</div>
+	</div>
+
+
+
+
+
+
+
+
+
+ <!--TODO STYLE THE NORMAL BUTTON!!!-->
+
+

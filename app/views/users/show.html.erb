@@ -1,14 +1,20 @@
-<div class="page-header">
-  <%= link_to users_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <%= link_to edit_user_path(@user), class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-pencil"></span>
-    Edit
-  <% end %>
-  <h1>Show user</h1>
-</div>
+<% provide(:title, @user.login) %>
+<div class="row">
+  <div class="col-lg-4 col-lg-offset-4">
+    <div class="page-header">
+      <h1 class="text-center">User info</h1>
+    </div>
 
-<dl class="dl-horizontal">
-</dl>
+    <p class="h3">Name: <%= @user.login %></p>
+
+    <p class="h3">email: <%= @user.email %></p>
+
+    <%= link_to "< Back to All user", users_path , class: "btn btn-primary" %>
+    <%= link_to edit_user_path(@user), class: 'btn btn-success' do %>
+      <span class="glyphicon glyphicon-pencil"></span>
+      Edit
+    <% end %>
+    <dl class="dl-horizontal">
+    </dl>
+  </div>
+</div>

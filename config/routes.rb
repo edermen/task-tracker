@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
 	root 'projects#index'
-
+  resources :tasks
 	resources :users
-	resources :projects
+	resources :projects do
+		resources :project_members, only: [:create, :destroy]
+		resources :tasks
+		resources :users
+	end
 	resources :sessions, only: [:new, :create, :destroy]
+	get 'statistics', to: "projects#statistics", as: "statistics"
 	get "login",	to: "sessions#new",			 as: "login"
 	get "logout", to: "sessions#destroy",  as: "logout"
 

@@ -1,0 +1,9 @@
+<% if object.errors.any? %>
+  <div id="error_explanation">
+    <dl>
+      <% object.errors.full_messages.each do |msg| %>
+        <dt class="alert alert-danger"> <%= msg %></dt>
+      <% end %>
+    </dl>
+  </div>
+<% end %>
