@@ -10,7 +10,7 @@ class ProjectMembersController < ApplicationController
 			respond_to do |format|
 				if @project_members.save
 					format.html { redirect_to project_path(@project_members.project_id)   }
-					flash[:success] = 'Member successfully added.'
+					flash[:success] = 'Member successfully added to project.'
         else
           # binding.pry
 					format.html { redirect_to project_path(@project_members.project_id)   }
@@ -22,7 +22,7 @@ class ProjectMembersController < ApplicationController
 	end
 
 	def destroy
-		# binding.pry
+		  binding.pry
 		@project_member.destroy
 		respond_to do |format|
 			format.html { redirect_to project_path(project_members_params) }

@@ -1,27 +1,23 @@
 
-    <%= minimal_form_for(task) do |f| %>
-			<%= render partial: "layouts/shared/form_error_messages", locals: {object: task} %>
+    <%= minimal_form_for([@project, @task]) do |f| %>
+			<%= render partial: "layouts/shared/form_error_messages", locals: {object: @task} %>
       <div class="input-group input-group-sm">
       <span class="input-group-addon">
         Enter name:
       </span>
         <%= f.input :name,  required: true,  class: "form-control", :error => false %>
 			</div>
+	      <%= f.input "project_id", as: :hidden, input_html: { value: @project.id } %>
 	      <div class="input-group input-group-sm">
 		      <span class="input-group-addon">
 		        Select user:
 		      </span>
-	        <%= collection_select(:task, :user_id, User.all, :id, :login, { include_blank: true, prompt: "Select
+	        <%= collection_select(:task, :user_id, Project.find(params[:project_id]).users, :id, :login, { include_blank:
+			        true,
+			        prompt: "Select
 	        user" }, {class: 'form-control'}) %>
 
 	      </div>
-
-      <div class="input-group input-group-sm">
-	      <span class="input-group-addon">
-	        Select project:
-	      </span>
-        <%= f.select( :project_id, Project.all.map {|p| [ p.name, p.id ] }, { include_blank: true, prompt: "Select a project" } , {class: 'form-control'} ) %>
-			</div>
 
       <div class="input-group input-group-sm">
       <span class="input-group-addon">

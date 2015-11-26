@@ -1,10 +1,15 @@
 <% provide(:title, 'Edit project') %>
 
 
-<div class="center-block form-width-default width-600">
+<div class="center-block form-width-default width-500">
   <%- model_class = Project -%>
   <div class="page-header">
-    <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
+    <%= link_to  project_path(@project), class: " btn btn-primary pull-left btn-sm" do %>
+      <span class="glyphicon glyphicon-menu-left"></span>
+      Back
+    <% end %>
+
+    <h1 class="center-block"><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
   </div>
 	<%= render "form" %>
 

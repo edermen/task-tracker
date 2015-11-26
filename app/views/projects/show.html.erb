@@ -1,20 +1,19 @@
 <% provide(:title, @project.name) %>
 <p id="notice"><%= notice %></p>
 <div class="row">
-  <div class="col-lg-4"><h1 class="pull-left"><%= @project.name %> </h1>
-    <%= link_to edit_project_path(@project), class: " btn btn-success pull-left btn-sm" do %>
+	<%= link_to  projects_path, class: " btn btn-primary pull-left btn-sm" do %>
+    <span class="glyphicon glyphicon-menu-left"></span>
+    Back
+  <% end %>
+
+  <h1 class="pull-left"><%= @project.name %> </h1>
+    <%= link_to edit_project_path(@project), class: " btn btn-success pull-left btn-xs" do %>
       <span class="glyphicon glyphicon-pencil"></span>
       Edit
     <% end %>
-  </div>
-	<div class="col-lg-6">
 
-		<%= link_to tasks_path, class: " btn btn-success pull-left btn-sm" do %>
-	    <span class="glyphicon glyphicon-plus"></span>
-			Add task
-		<% end %>
-	</div>
 </div>
+<hr>
 <div class="row">
 	<!-- Project tasks -->
   <div class="col-lg-8">
@@ -76,7 +75,8 @@
 			      <span class="input-group-addon">
 			        Set status:
 			      </span>
-	      <%= u.select(:user_id, User.all.map {|p| [ p.login, p.id ] }, { prompt: "Select user" } , {class: 'form-control'} ) %>
+	      <%= u.select(:user_id, User.not_in_project(@project.id).map {|p| [ p.login, p.id ] }, { prompt: "Select
+	      user" } , {class: 'form-control'} ) %>
 	    </div>
 	    <%= u.submit "add user!", class: "btn btn-default btn btn-primary btn-block " %>
 	  <% end %>

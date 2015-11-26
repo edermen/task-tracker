@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
+
   def index
     @projects = Project.all
   end
@@ -19,9 +20,9 @@ class ProjectsController < ApplicationController
  
 	def create
 		@project = Project.new(project_params)
-		respond_to do |format|
-			if @project.save
-				format.html { redirect_to @project }
+    respond_to do |format|
+      if @project.save
+        format.html { redirect_to @project }
 				flash[:success] = 'Project was successfully created.'
 			else
 				format.html { render :new }
@@ -45,6 +46,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
+    # binding.pry
     respond_to do |format|
 			format.html { redirect_to projects_url }
 			flash[:warning] = 'Project was successfully destroyed.'

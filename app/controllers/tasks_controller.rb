@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:index, :show, :edit, :update, :destroy]
 
 	
 	
@@ -9,30 +9,24 @@ class TasksController < ApplicationController
   end
 
   def show
+    @project = Project.find(params[:project_id])
   end
 
   def new
+    @project = Project.find(params[:project_id])
     @task = Task.new
   end
 
   def edit
+    @project = Project.find(params[:project_id])
   end
 
   def create
     @task = Task.new(task_params)
     respond_to do |format|
       if @task.save
-        if  @task.project_id && @task.user_id
-          @task.project.project_members.build(user_id: params[:task][:user_id])
-        end
-
 				flash[:success] = 'Task was successfully created.'
-
-				if @task.project_id
-					format.html { redirect_to project_path(@task.project_id) }
-				else
-					format.html { redirect_to @task }
-				end
+        format.html { redirect_to project_path(params[:project_id]) }
 			else
         format.html { render :new }
 				flash.now[:warning] = 'Not Save!'
@@ -44,15 +38,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        if  @task.project_id && @task.user_id
-          @task.project.project_members.build(project_id: @task.project_id, user_id: @task.user_id)
-        end
-
-        if @task.project_id
-          format.html { redirect_to project_path(@task.project_id) }
-        end
-
-        format.html { redirect_to :back  }
+        format.html { redirect_to project_path(params[:project_id]) }
 				flash[:success] = 'Task was successfully updated.'
 			else
         format.html { render :edit }

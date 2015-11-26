@@ -1,22 +1,20 @@
-/*
-  =require twitter-bootstrap-static/bootstrap
-
-  Use Font Awesome icons (default)
-  To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
-  =require twitter-bootstrap-static/fontawesome
-  */
-
 .input-group-lg, .input-group-sm{
   margin: $form-group-margin-bottom 0
 }
 .form-actions{
   margin: 10px 0px;
 }
-
+.navbar-collapse a.btn { margin: 8px}
+.item-header a.btn {
+  margin: 0px;
+}
+a.btn {
+  margin: 0px 5px
+}
 
 // Variables
 $width-100px: 160px;
-$width-600px: 600px;
+$width-500px: 500px;
 
 $margin-15px: 15px;
 $item-color:  #f8f8f8;
