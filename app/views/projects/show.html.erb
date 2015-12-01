@@ -64,7 +64,7 @@
 	<div class="row">
 	  <div class="col-lg-9">
 	    <h2>Members:</h2>
-	    <%= render partial: "users/user_list", locals: { users: @project.users } %>
+	    <%= render partial: "users/user_list", locals: { users: @project.project_members} %>
 	  </div>
 		<div class="col-lg-3">
 	  <!-- Add Member -->

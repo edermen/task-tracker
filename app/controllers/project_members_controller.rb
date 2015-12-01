@@ -22,18 +22,17 @@ class ProjectMembersController < ApplicationController
 	end
 
 	def destroy
-    binding.pry
-    @project_member = ProjectMember.find(project_members_params)
+    @project_member = ProjectMember.find(params[:id])
     @project_member.destroy
     respond_to do |format|
-			format.html { redirect_to project_path(project_members_params) }
-			flash[:warning] = 'The user was deleted from the project'
+			format.html { redirect_to project_path(params[:project_id]) }
+			# flash[:warning] = 'The user was deleted from the project'
 		end
 	end
 
 	private
 	def project_members_params
-		params.require(:project_member).permit(:project_id, :user_id)
+		params.require(:project_member).permit(:id, :project_id, :user_id)
 	end
 end
 

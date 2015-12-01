@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 	resources :projects do
 		resources :project_members, only: [:create, :destroy]
 		resources :tasks
-		resources :users
+    resources :users
 	end
 	resources :sessions, only: [:new, :create, :destroy]
 	get 'statistics', to: "projects#statistics", as: "statistics"

@@ -10,7 +10,7 @@ class Project < ActiveRecord::Base
 
 
 	scope :tasks, 			    -> { joins(:tasks) }
-  scope :project_members, -> { joins(:project_members) }
+  # scope :project_members, -> { joins(:project_members) }
 
 
 	validates	:name, :description,  presence: true

@@ -1,20 +1,22 @@
 <div class="table-responsive">
 	<table class="table table-striped table-bordered table-hover">
 	  <tbody>
-	  <%= content_tag_for(:tr, users) do |user| %>
-	    <td><%= user.login %></td>
-	    <td><%= user.email %></td>
-	    <% if users == @users %>
 
-		    <td><%= link_to 'Show', user %></td>
-		    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-	      <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	    <% end %>
-	    <% if users == @project.users %>
-		    <td>
-		      <%= link_to "Exclude in project", project_project_member_path(@project.id, user.id), method: :delete, data:{ confirm: 'Do you want exclude user out project?' }
-		      %>
-		    </td>
+	  <%= content_tag_for(:tr, users) do |project_member| %>
+	  <%# binding.pry %>
+	    <% if users == @users %>
+	      <td><%= project_member.login %></td>
+	      <td><%= project_member.email %></td>
+		    <td><%= link_to 'Show', project_member %></td>
+		    <td><%= link_to 'Edit', edit_user_path(project_member) %></td>
+	      <td><%= link_to 'Destroy', project_member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	    <% elsif users == @project.project_members %>
+	      <td><%= project_member.user.login %></td>
+	      <td><%= project_member.user.email %></td>
+	      <td>
+	        <%= link_to "Exclude in project", project_project_member_path(id: project_member.id, project_id: project_member.project_id, user_id: project_member.user_id), method: :delete, data:{ confirm: 'Are you sure?' }
+	        %>
+	      </td>
 		  <% end %>
 	  <% end %>
 	  </tbody>
