@@ -10,7 +10,7 @@
 		    <td><%= link_to 'Show', project_member %></td>
 		    <td><%= link_to 'Edit', edit_user_path(project_member) %></td>
 	      <td><%= link_to 'Destroy', project_member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	    <% elsif users == @project.project_members %>
+	    <% elsif users == @project.project_members  %>
 	      <td><%= project_member.user.login %></td>
 	      <td><%= project_member.user.email %></td>
 	      <td>
