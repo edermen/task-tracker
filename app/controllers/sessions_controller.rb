@@ -2,11 +2,7 @@ class SessionsController < ApplicationController
 	before_action :set_user, only: [:create]
 	before_action :require_login, only: [:destroy]
 
-	def new
-	end
-
 	def create
-
 		if @user
 			redirect_back_or_to root_url
 		else

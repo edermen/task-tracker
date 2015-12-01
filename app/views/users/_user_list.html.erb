@@ -10,7 +10,12 @@
 		    <td><%= link_to 'Edit', edit_user_path(user) %></td>
 	      <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	    <% end %>
-
+	    <% if users == @project.users %>
+		    <td>
+		      <%= link_to "Exclude in project", project_project_member_path(@project.id, user.id), method: :delete, data:{ confirm: 'Do you want exclude user out project?' }
+		      %>
+		    </td>
+		  <% end %>
 	  <% end %>
 	  </tbody>
 	</table>

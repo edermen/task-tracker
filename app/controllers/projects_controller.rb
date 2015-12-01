@@ -61,7 +61,7 @@ class ProjectsController < ApplicationController
 
     def project_params
       params.require(:project).permit(:name, :description,
-				project_members: [:user_id],
+				project_members: [:project_id, :user_id],
 				tasks: [:name, :project_id, :status]
 			)
     end
